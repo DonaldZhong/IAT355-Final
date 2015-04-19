@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interactive Crime Visualization</title>
+	<link rel="stylesheet" type="text/css" href="css/c3.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Interactive Crime Visualization</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="map.html">Map</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="scripts/d3.v3.min.js"></script>
+<script src="scripts/c3.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+
+<p style="text-align: center;font-size: 30px;font-weight: 4px;"> Crime Trends in 2013 and 2014</p>
+
+<div id="chart"></div>
+
+<script>
+  
+
+
+	var chart = c3.generate({
+    	bindto: "#chart",
+    	x: 'x',
+    	data: { 
+    		columns: [
+    			['Total Number of Crimes in 2013',  1159, 313, 100, 330, 140, 110, 750],
+    		// ],
+    			['Total Number of Crimes in 2014',  2000, 254, 180, 340, 210, 90, 810]
+    		],
+    		type: 'line',
+    	},
+    	axis: {
+    		x:{
+    			label: 'Type of Crime',
+    			type: 'category',
+    			categories: ['Commerical Break and Enter', 'Fatal/Injury Collision', 'Mischief Over $5000','Mischief Under $5000','Shoplifting','Theft From Auto Over $5000','Theft From Auto Under $5000']
+    		},
+    		y: {
+    			label: 'Number of Records'
+    		}
+    	},
+		grid: {
+	        x: {
+	            show: true
+	        },
+	        y: {
+	            show: true
+	        }
+	    },
+	    subchart: {
+	        show: true
+	    },
+});
+
+</script>
+
+<br><br><hr style="border-width: 4px;"><br><br>
+
+<p style="text-align: center;font-size: 30px;font-weight: 4px;"> Comparison of Crimes in 2013 and 2014</p>
+
+<div id="chart2"></div>
+	<div style="margin-left: auto;margin-right: auto; text-align: center;">
+		<p>Select a Year:</p>
+		<select id="chartType" name='type'>
+			<option value="2013">2013</option>
+			<option value="2014">2014</option>
+		</select>
+	</div>
+<script>
+
+var chart2 = c3.generate({
+	bindto: '#chart2',
+    data: {
+        columns: [
+            ['Vancouver', 335, 113, 40, 155, 60, 50, 350],
+            ['Surrey', 824, 200, 60, 175, 80, 60, 400]
+        ],
+        type: 'bar',
+    },
+    axis: {
+        x: {
+        	type: 'category',
+			categories: ['Commerical Break and Enter', 'Fatal/Injury Collision', 'Mischief Over $5000','Mischief Under $5000','Shoplifting','Theft From Auto Over $5000','Theft From Auto Under $5000'],
+            label: 'Type of Crime'
+        },
+        y: {
+            label: 'Number of Records'
+        }
+    },
+
+});
+
+d3.select("[name=type]").on("change", function () {
+	types = this.value;
+	console.log(types);
+	if(types == 2013) {
+	    var chart = c3.generate({
+    	bindto: '#chart2',
+        data: {
+        columns: [
+            ['Vancouver', 335, 113, 40, 155, 60, 50, 350],
+            ['Surrey', 824, 200, 60, 175, 80, 60, 400]
+        ],
+        type: 'bar',
+    },
+    axis: {
+        x: {
+        	type: 'category',
+			categories: ['Commerical Break and Enter', 'Fatal/Injury Collision', 'Mischief Over $5000','Mischief Under $5000','Shoplifting','Theft From Auto Over $5000','Theft From Auto Under $5000'],
+            label: 'Type of Crime'
+        },
+        y: {
+            label: 'Number of Records'
+        }
+    }
+})
+   	} else {
+	    var chart = c3.generate({
+    	bindto: '#chart2',
+        data: {
+        columns: [
+            ['Vancouver', 857, 120, 85, 180, 90, 40, 377],
+            ['Surrey', 1143, 134, 95, 160, 120, 50, 433]
+        ],
+        type: 'bar',
+    },
+    axis: {
+        x: {
+        	type: 'category',
+			categories: ['Commerical Break and Enter', 'Fatal/Injury Collision', 'Mischief Over $5000','Mischief Under $5000','Shoplifting','Theft From Auto Over $5000','Theft From Auto Under $5000'],
+            label: 'Type of Crime'
+        },
+        y: {
+            label: 'Number of Records'
+        }
+    }
+})
+}
+});
+
+</script>
+
+</body>
+</html>

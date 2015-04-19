@@ -1,0 +1,29 @@
+Layout {
+  FileType : "delimited"
+  Delimiter : ","
+  Address : "1"
+  SkipRows : "1"
+  TextCodec : "System"
+  FieldDefinitions {
+    0 {
+      Name : "Crime"
+      Type : "string"
+    }
+    1 {
+      Name : "Block"
+      Type : "string"
+    }
+    2 {
+      Name : "Month"
+      Type : "int"
+    }
+    3 {
+      Name : "Year"
+      Type : "int"
+    }
+    4 {
+      Name : "Location"
+      Type : "string"
+    }
+  }
+}
